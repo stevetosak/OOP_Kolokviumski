@@ -29,7 +29,7 @@ public:
      virtual void print(){
         cout << "Game: " << name << ", regular price: $" << price << (hasDiscount ? ", bought on sale\n" : "\n");
     }
-    ~Game() = default;
+    virtual ~Game() = default;
 
     bool operator == (const Game& other){
          return !strcmp(this->name, other.name);
