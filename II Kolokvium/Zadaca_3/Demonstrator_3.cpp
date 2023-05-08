@@ -20,7 +20,10 @@ public:
     char const * getIme()const{
         return ime;
     }
-    void pecati () const{cout<<ime<<" "<<krediti<<"ECTS";}
+    void pecati () const{
+        cout<<ime<<" "<<krediti<<"ECTS";
+//     pishi ubo vmpir 
+    }
 };
 
 class Predavach{
@@ -43,13 +46,20 @@ public:
         strcpy(this->imeIPrezime,p.imeIPrezime);
     }
     Predavach operator=(const Predavach &p){
-        if (this==&p) return *this;
+        if (this!=&p) {   
         this->brojKursevi=p.brojKursevi;
         for (int i=0;i<p.brojKursevi;i++) this->kursevi[i]=p.kursevi[i];
         this->imeIPrezime=new char[strlen(p.imeIPrezime)+1];
         delete [] imeIPrezime;
         strcpy(this->imeIPrezime,p.imeIPrezime);
+        }
         return *this;
+    }
+    void copy(char *ime){
+        delete[] imeIPrezime;
+        imeIPrezime = new char[strlen(ime)+1];
+        strcpy(this->imeIPrezime,ime);
+        this->imeIPrezime[strlen(ime)] = 0; 
     }
     ~Predavach(){delete [] imeIPrezime;}
 
