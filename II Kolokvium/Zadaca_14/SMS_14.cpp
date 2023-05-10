@@ -35,12 +35,12 @@ public:
         this->wasRoaming = roaming;
     }
     RegularSMS(const RegularSMS& other) : SMS(other){
-        copy(other);
+        copy(other,true);
     }
     RegularSMS& operator = (const RegularSMS& other){
         if(this != & other){
             delete [] msg;
-            copy(other);
+            copy(other,false);
             return *this;
         }
         return *this;
@@ -67,10 +67,20 @@ public:
         delete [] msg;
     }
 private:
-    void copy(const RegularSMS& other){
-        this->msg = new char [strlen(other.msg) +1];
-        strcpy(this->msg,other.msg);
-        this->wasRoaming = other.wasRoaming;
+    void copy(const RegularSMS& other, bool a){
+        if(a){
+            this->msg = new char [strlen(other.msg) +1];
+            strcpy(this->msg,other.msg);
+            this->wasRoaming = other.wasRoaming;
+        }
+        else{
+            this->msg = new char [strlen(other.msg) +1];
+            strcpy(this->msg,other.msg);
+            this->wasRoaming = other.wasRoaming;
+            this->price = other.price;
+            strcpy(this->ReceivingNumber,other.ReceivingNumber);
+
+        }
     }
 };
 float RegularSMS::pctForRoaming = 300;
