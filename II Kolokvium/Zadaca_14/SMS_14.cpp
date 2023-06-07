@@ -19,6 +19,7 @@ public:
     virtual double SMS_cena () = 0;
     virtual ~SMS() = default;
     friend ostream& operator << (ostream& os, SMS& sms);
+
 };
 
 const double SMS::DDV = 18;
